@@ -17,9 +17,12 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import org.json.JSONObject;
-
 import java.math.BigDecimal;
+
+import pl.zankowski.iextrading4j.api.stocks.Quote;
+import pl.zankowski.iextrading4j.client.IEXTradingClient;
+import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
+import pl.zankowski.iextrading4j.client.socket.request.IAsyncRequestBuilder;
 
 
 public class StockView extends AppCompatActivity {
@@ -139,14 +142,12 @@ public class StockView extends AppCompatActivity {
     }
     private class getInitPrice extends AsyncTask<String, Void, String> {
         BigDecimal price;
-        protected String doInBackground(String... quote) {
-            String symbol = quote[0];
+        protected String doInBackground(String... stockQuote) {
+            String symbol = stockQuote[0];
             try {
                 final IEXTradingClient iexTradingClient = IEXTradingClient.create();
-                final Quote quote = iexTradingClient.executeRequest(new QuoteRequestBuilder()
-                        .withSymbol("AAPL")
-                        .build());
-                System.out.println(quote);
+                final Quote quote = iexTradingClient.executeRequest(new QuoteRequestBuilder().withSymbol(symbol).build());
+                System.out.println(stockQuote);
 
 
             } catch (Exception e) {
