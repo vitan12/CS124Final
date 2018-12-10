@@ -3,25 +3,23 @@ package com.example.radhikasriram.cs125final;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.lang.String;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.json.JSONObject;
 
 import java.math.BigDecimal;
-import java.net.URL;
 
 
 public class StockView extends AppCompatActivity {
@@ -40,7 +38,6 @@ public class StockView extends AppCompatActivity {
 
 
 
-        // https://financequotes-api.com/
         Log.d("StockView", "Failed before getting stock");
         error = false;
         new getInitPrice().execute(getSymbol);
@@ -145,6 +142,15 @@ public class StockView extends AppCompatActivity {
         protected String doInBackground(String... quote) {
             String symbol = quote[0];
             try {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                        Request.Method.GET,
+                        "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + company + "&types=quote,chart&range=" + chartInterval,
+
+                        null,
+                        new Response.Listener<JSONObject>() {
+
+
+                            TextView price = findViewById(R.id.price);
 
 
             } catch (Exception e) {
