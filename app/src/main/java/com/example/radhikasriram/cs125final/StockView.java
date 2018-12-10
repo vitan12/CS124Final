@@ -17,6 +17,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import pl.zankowski.iextrading4j.api.stocks.Quote;
@@ -25,8 +26,9 @@ import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
 import pl.zankowski.iextrading4j.client.socket.request.IAsyncRequestBuilder;
 
 
-public class StockView extends AppCompatActivity {
+public class StockView extends AppCompatActivity implements getInitPrice.getInitPriceCallback {
     boolean error;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,10 +42,9 @@ public class StockView extends AppCompatActivity {
         System.out.println(getSymbol);
 
 
-
         Log.d("StockView", "Failed before getting stock");
         error = false;
-        new getInitPrice().execute(getSymbol);
+        new getInitPrice(this).execute(getSymbol);
         Log.d("StockView", "Failed After getting stock");
 
         TextView textView = (TextView) findViewById(R.id.textView);
@@ -135,50 +136,14 @@ public class StockView extends AppCompatActivity {
 
     }
 
+    public void onResultReceived(String result) {
+        TextView price = (TextView) findViewById(R.id.currentPrice);
+        price.setText(result);
+    }
+
     private void startActvity() {
         Intent myIntent = new Intent(StockView.this,
                 MainActivity.class);
         startActivity(myIntent);
     }
-    private class getInitPrice extends AsyncTask<String, Void, String> {
-        //BigDecimal price;
-        protected String doInBackground(String... stockQuote) {
-            String symbol = stockQuote[0];
-            //https://github.com/WojciechZankowski/iextrading4j#quick-start
-            try {
-                final IEXTradingClient iexTradingClient = IEXTradingClient.create();
-                final Quote quote = iexTradingClient.executeRequest(new QuoteRequestBuilder().withSymbol(symbol).build());
-                System.out.println(quote);
-
-
-            } catch (Exception e) {
-                error = true;
-                Log.d("Thing", "No work");
-            }
-            return "Executed";
-        }
-        protected void onPostExecute(String result) {
-            if (!error) {
-                TextView price = (TextView) findViewById(R.id.currentPrice);
-                price.setText(price.toString());
-            } else {
-                Log.d("It", "no work :(");
-            }
-            if (error) {
-                AlertDialog.Builder builder;
-                builder = new AlertDialog.Builder(StockView.this, android.R.style.Theme_Material_Dialog_Alert);
-                builder.setTitle("Unable to get Quote")
-                        .setMessage("We were unable to pull a quote for this symbol. Please check your network connectivity and spelling, and try again.")
-                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                startActvity();
-                            }
-                        })
-
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-        }
-    }
 }
-
