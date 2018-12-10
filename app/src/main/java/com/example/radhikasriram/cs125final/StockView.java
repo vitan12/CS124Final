@@ -19,8 +19,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import yahoofinance.Stock;
-import yahoofinance.YahooFinance;
+
 import java.math.BigDecimal;
 import java.net.URL;
 
@@ -146,8 +145,8 @@ public class StockView extends AppCompatActivity {
         protected String doInBackground(String... quote) {
             String symbol = quote[0];
             try {
-                Stock stock = YahooFinance.get(symbol);
-                price = stock.getQuote().getPrice();
+
+
             } catch (Exception e) {
                 error = true;
                 Log.d("Thing", "No work");
