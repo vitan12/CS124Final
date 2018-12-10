@@ -141,13 +141,14 @@ public class StockView extends AppCompatActivity {
         startActivity(myIntent);
     }
     private class getInitPrice extends AsyncTask<String, Void, String> {
-        BigDecimal price;
+        //BigDecimal price;
         protected String doInBackground(String... stockQuote) {
             String symbol = stockQuote[0];
+            //https://github.com/WojciechZankowski/iextrading4j#quick-start
             try {
                 final IEXTradingClient iexTradingClient = IEXTradingClient.create();
                 final Quote quote = iexTradingClient.executeRequest(new QuoteRequestBuilder().withSymbol(symbol).build());
-                System.out.println(stockQuote);
+                System.out.println(quote);
 
 
             } catch (Exception e) {
