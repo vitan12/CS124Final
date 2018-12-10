@@ -142,15 +142,11 @@ public class StockView extends AppCompatActivity {
         protected String doInBackground(String... quote) {
             String symbol = quote[0];
             try {
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        Request.Method.GET,
-                        "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + company + "&types=quote,chart&range=" + chartInterval,
-
-                        null,
-                        new Response.Listener<JSONObject>() {
-
-
-                            TextView price = findViewById(R.id.price);
+                final IEXTradingClient iexTradingClient = IEXTradingClient.create();
+                final Quote quote = iexTradingClient.executeRequest(new QuoteRequestBuilder()
+                        .withSymbol("AAPL")
+                        .build());
+                System.out.println(quote);
 
 
             } catch (Exception e) {
