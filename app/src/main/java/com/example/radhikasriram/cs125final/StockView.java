@@ -46,20 +46,6 @@ public class StockView extends AppCompatActivity {
         error = false;
         new getInitPrice().execute(getSymbol);
         Log.d("StockView", "Failed After getting stock");
-        if (error) {
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(StockView.this, android.R.style.Theme_Material_Dialog_Alert);
-            builder.setTitle("Unable to get Quote")
-                    .setMessage("We were unable to pull a quote for this symbol. Please check your network connectivity and spelling, and try again.")
-                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            startActvity();
-                        }
-                    })
-
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
 
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(getSymbol);
@@ -174,6 +160,20 @@ public class StockView extends AppCompatActivity {
                 price.setText(price.toString());
             } else {
                 Log.d("It", "no work :(");
+            }
+            if (error) {
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(StockView.this, android.R.style.Theme_Material_Dialog_Alert);
+                builder.setTitle("Unable to get Quote")
+                        .setMessage("We were unable to pull a quote for this symbol. Please check your network connectivity and spelling, and try again.")
+                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActvity();
+                            }
+                        })
+
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         }
     }
