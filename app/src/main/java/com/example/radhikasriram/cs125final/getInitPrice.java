@@ -3,9 +3,22 @@ package com.example.radhikasriram.cs125final;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import pl.zankowski.iextrading4j.api.stocks.Quote;
-import pl.zankowski.iextrading4j.client.IEXTradingClient;
-import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+
+//import pl.zankowski.iextrading4j.api.stocks.Quote;
+//import pl.zankowski.iextrading4j.client.IEXTradingClient;
+//import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
 
 public class getInitPrice extends AsyncTask<String, Void, String> {
 
@@ -18,20 +31,64 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
     //BigDecimal price;
     protected String doInBackground(String... stockQuote) {
         String symbol = stockQuote[0];
-        //https://github.com/WojciechZankowski/iextrading4j#quick-start
-        try {
-            final IEXTradingClient iexTradingClient = IEXTradingClient.create();
-            final Quote quote = iexTradingClient.executeRequest(new QuoteRequestBuilder().withSymbol(symbol).build());
-            return quote.toString();
 
-
-        } catch (Exception e) {
-            Log.d("doInBackground", "No work");
-            Log.d("doInBackground", e.toString());
+//        String officialPrice = getOfficialPrice();
+//        Log.d("Length of official price result", Integer.toString(officialPrice.length()));
+        if (getOfficialPrice() != null) {
+            return getOfficialPrice();
         }
-        return "Executed";
+        if (getClosingPrice() != null) {
+            return getClosingPrice();
+        }
+        return "Error";
     }
 
+    String getOfficialPrice() {
+        try {
+            return readDataFromAPI("https://api.iextrading.com/1.0/deep/official-price?symbols=aapl");
+        } catch (Exception e) {
+            Log.d("Exception occurred", e.getMessage());
+        }
+
+        return null;
+    }
+
+    String readDataFromAPI(String url) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+        conn.setRequestMethod("GET");
+        Log.d("Response", Integer.toString(conn.getResponseCode()));
+        StringBuilder content;
+
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            String line;
+            content = new StringBuilder();
+
+            while ((line = in.readLine()) != null) {
+                content.append(line);
+            }
+        } finally {
+            conn.disconnect();
+        }
+        Log.d("ResponseData", content.toString());
+        HashMap<String, String> dataMap = new Gson().fromJson(content.toString(),
+        new TypeToken<HashMap<String, String>>(){}.getType());
+
+        if (dataMap.containsKey("close")) {
+            return dataMap.get("close");
+        } else if (dataMap.containsKey("price")) {
+            return dataMap.get("price");
+        }
+        return null;
+    }
+    String getClosingPrice() {
+        try {
+            return readDataFromAPI("https://api.iextrading.com/1.0/stock/aapl/previous");
+        } catch (Exception e) {
+            Log.d("Exception occurred", e.getMessage());
+        }
+
+        return null;
+    }
     protected void onPostExecute(String result) {
         listener.onResultReceived(result);
     }

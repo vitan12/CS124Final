@@ -20,10 +20,10 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import pl.zankowski.iextrading4j.api.stocks.Quote;
-import pl.zankowski.iextrading4j.client.IEXTradingClient;
-import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
-import pl.zankowski.iextrading4j.client.socket.request.IAsyncRequestBuilder;
+//import pl.zankowski.iextrading4j.api.stocks.Quote;
+//import pl.zankowski.iextrading4j.client.IEXTradingClient;
+//import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
+//import pl.zankowski.iextrading4j.client.socket.request.IAsyncRequestBuilder;
 
 
 public class StockView extends AppCompatActivity implements getInitPrice.getInitPriceCallback {

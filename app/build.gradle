@@ -16,6 +16,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+//    packagingOptions {
+//        exclude 'com/sun/xml/bind/unmarshaller/Messages_pt_BR.properties'
+//        exclude 'com/sun/xml/bind/v2/schemagen/Messages_es.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/Messages_es.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/unmarshaller/Messages_zh_CN.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/unmarshaller/Messages_zh_TW.properties'
+//        exclude 'com/sun/xml/bind/api/Messages_ko.properties'
+//        exclude 'com/sun/xml/bind/v2/model/annotation/Messages_de.properties'
+//        exclude 'com/sun/xml/bind/v2/model/annotation/Messages_pt_BR.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/reflect/Messages.properties'
+//        exclude 'com/sun/xml/bind/unmarshaller/Messages_fr.properties'
+//        exclude 'com/sun/xml/bind/v2/schemagen/Messages.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/property/Messages_es.properties'
+//        exclude 'com/sun/xml/bind/v2/model/impl/Messages_ko.properties'
+//        exclude 'com/sun/xml/bind/v2/model/impl/Messages.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/unmarshaller/Messages_es.properties'
+//        exclude 'com/sun/xml/bind/v2/runtime/Messages_pt_BR.properties'
+//        exclude 'com/sun/xml/bind/api/Messages.properties'
+//    }
 }
 
 dependencies {
@@ -26,7 +46,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.jjoe64:graphview:4.2.2'
-    implementation 'pl.zankowski:iextrading4j-all:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+//    implementation 'pl.zankowski:iextrading4j-all:2.3.0'
 
 
 }
