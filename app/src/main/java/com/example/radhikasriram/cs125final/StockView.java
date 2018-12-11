@@ -73,11 +73,13 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
             public void onClick(View arg0) {
                 graph.removeAllSeries();
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                        new DataPoint(0, 1),
-                        new DataPoint(1, 3),
-                        new DataPoint(2, 5),
-                        new DataPoint(3, 1),
-                        new DataPoint(4, 4)
+                        new DataPoint(0, 1636.85),
+                        new DataPoint(1, 1631.17),
+                        new DataPoint(2, 1599.01),
+                        new DataPoint(3, 1619.44),
+                        new DataPoint(4, 1593.41),
+                        new DataPoint(5, 1512.29),
+                        new DataPoint(6, 1495.46)
                 });
                 graph.addSeries(series);
             }
@@ -87,11 +89,13 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
             public void onClick(View arg0) {
                 graph.removeAllSeries();
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                        new DataPoint(0, 2),
-                        new DataPoint(1, 1),
-                        new DataPoint(2, 4),
-                        new DataPoint(3, 3),
-                        new DataPoint(4, 5)
+                        new DataPoint(0, 142.82),
+                        new DataPoint(1, 146.98),
+                        new DataPoint(2, 150.44),
+                        new DataPoint(3, 156.22),
+                        new DataPoint(4, 154.1),
+                        new DataPoint(5, 149.53),
+                        new DataPoint(6, 145.41)
                 });
                 graph.addSeries(series);
             }
@@ -101,11 +105,13 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
             public void onClick(View arg0) {
                 graph.removeAllSeries();
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                        new DataPoint(0, 4),
-                        new DataPoint(1, 3),
-                        new DataPoint(2, 1),
-                        new DataPoint(3, 5),
-                        new DataPoint(4, 3)
+                        new DataPoint(0, 141.55),
+                        new DataPoint(1, 142.16),
+                        new DataPoint(2, 144.22),
+                        new DataPoint(3, 143.85),
+                        new DataPoint(4, 139.53),
+                        new DataPoint(5, 131.55),
+                        new DataPoint(6, 132.43)
                 });
                 graph.addSeries(series);
             }
@@ -115,11 +121,13 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
             public void onClick(View arg0) {
                 graph.removeAllSeries();
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                        new DataPoint(0, 1),
-                        new DataPoint(1, 2),
-                        new DataPoint(2, 5),
-                        new DataPoint(3, 1),
-                        new DataPoint(4, 2)
+                        new DataPoint(0, 35.3186),
+                        new DataPoint(1, 35.5561),
+                        new DataPoint(2, 34.8634),
+                        new DataPoint(3, 35.1801),
+                        new DataPoint(4, 35.3780),
+                        new DataPoint(5, 35.3088),
+                        new DataPoint(6, 34.7249)
                 });
                 graph.addSeries(series);
             }
