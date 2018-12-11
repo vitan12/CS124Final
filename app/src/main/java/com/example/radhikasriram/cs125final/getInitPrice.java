@@ -89,7 +89,7 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
         return null;
     }
 
-    void getHistoricalStockData(String symbol, String range) throws MalformedURLException, IOException {
+    String getHistoricalStockData(String symbol, String range) throws MalformedURLException, IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL("https://api.iextrading.com/1.0/stock/" + symbol
                 + "/chart/" + range).openConnection();
 
@@ -111,6 +111,7 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
         Log.d("ResponseData", content.toString());
         HashMap<String, String> dataMap = new Gson().fromJson(content.toString(),
                 new TypeToken<HashMap<String, String>>(){}.getType());
+        return dataMap.toString();
     }
 
     protected void onPostExecute(String result) {
