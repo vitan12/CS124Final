@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="AAPL"
+        android:text="Apple Inc. AAPL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -24,22 +24,22 @@
 
     <Button
         android:id="@+id/AAPL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="47dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:tag="AAPL"
         android:text="View"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/AMZN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="View"
@@ -48,8 +48,8 @@
 
     <Button
         android:id="@+id/BABA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
@@ -60,7 +60,7 @@
 
     <Button
         android:id="@+id/FB"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -70,10 +70,10 @@
 
     <Button
         android:id="@+id/GM"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="View"
         app:layout_constraintBottom_toTopOf="@+id/MSFT"
@@ -83,7 +83,7 @@
 
     <Button
         android:id="@+id/MSFT"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -93,7 +93,7 @@
 
     <Button
         android:id="@+id/NASDAQ"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -109,10 +109,11 @@
         android:layout_width="82dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="209dp"
-        android:text="AMZN"
+        android:text="Amazon Inc. AMZN"
         app:layout_constraintEnd_toStartOf="@+id/AMZN"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -123,7 +124,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="209dp"
-        android:text="BABA"
+        android:text="Ali Baba BABA"
         app:layout_constraintEnd_toStartOf="@+id/BABA"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +137,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="213dp"
-        android:text="FB"
+        android:text="Facebook FB"
         app:layout_constraintEnd_toStartOf="@+id/FB"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +150,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="208dp"
-        android:text="GM"
+        android:text="General Motors GM"
         app:layout_constraintEnd_toStartOf="@+id/GM"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +163,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="209dp"
-        android:text="MSFT"
+        android:text="Microsoft MSFT"
         app:layout_constraintEnd_toStartOf="@+id/MSFT"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +176,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="209dp"
-        android:text="NASDAQ"
+        android:text="JP Morgan JPM"
         app:layout_constraintEnd_toStartOf="@+id/MSFT"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +190,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="209dp"
         android:layout_marginBottom="158dp"
-        android:text="S and P 500"
+        android:text="Bank of America "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/NASDAQ"
         app:layout_constraintHorizontal_bias="0.0"
@@ -198,8 +199,8 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/SandP"
-        android:layout_width="wrap_content"
+        android:id="@+id/INDEXSP"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -233,5 +234,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/SandP" />
+        app:layout_constraintTop_toBottomOf="@+id/INDEXSP" />
 </android.support.constraint.ConstraintLayout>

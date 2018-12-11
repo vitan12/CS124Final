@@ -21,10 +21,10 @@ import java.util.HashMap;
 //import pl.zankowski.iextrading4j.client.IEXTradingClient;
 //import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
 
-public class getInitPrice extends AsyncTask<String, Void, String> {
+public class getInitPrice extends AsyncTask<String, Void, String>  {
 
     getInitPriceCallback listener;
-
+    String symbol1 = "";
     public getInitPrice (getInitPriceCallback listener) {
         this.listener = listener;
     }
@@ -32,7 +32,7 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
     //BigDecimal price;
     protected String doInBackground(String... stockQuote) {
         String symbol = stockQuote[0];
-
+        symbol1 = symbol;
         if (getOfficialPrice(symbol) != null) {
             return getOfficialPrice(symbol);
         }
@@ -115,11 +115,11 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String result) {
-        listener.onResultReceived(result);
+        listener.onResultReceived(result, symbol1);
     }
 
     public interface getInitPriceCallback {
-        void onResultReceived(String result);
+        void onResultReceived(String result, String symbol);
     }
 
 }
