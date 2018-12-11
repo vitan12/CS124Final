@@ -143,7 +143,23 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
 
     }
 
-    public void onResultReceived(String result) {
+    public void onResultReceived(String result, String symbol) {
+        if (result.equals("Error")) {
+            AlertDialog.Builder error= new AlertDialog.Builder(this);
+            error.setMessage("There was an error fetching data for this stock. Please check your network connection and spelling, and try again.");
+            error.setCancelable(false);
+            error.setTitle("Error Fetching Symbol Info");
+            error.setPositiveButton(
+                    "Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActvity();
+                        }
+                    });
+
+            AlertDialog dailed = error.create();
+            dailed.show();
+        }
         TextView price = (TextView) findViewById(R.id.currentPrice);
         price.setText(result);
         price1 = result;
