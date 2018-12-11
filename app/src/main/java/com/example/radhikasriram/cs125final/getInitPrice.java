@@ -39,6 +39,9 @@ public class getInitPrice extends AsyncTask<String, Void, String>  {
         if (getClosingPrice(symbol) != null) {
             return getClosingPrice(symbol);
         }
+        if (getGraph(symbol) != null) {
+            return getGraph(symbol);
+        }
         return "Error";
     }
 
@@ -89,10 +92,8 @@ public class getInitPrice extends AsyncTask<String, Void, String>  {
         return null;
     }
 
-    String getHistoricalStockData(String symbol, String range) throws MalformedURLException, IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL("https://api.iextrading.com/1.0/stock/" + symbol
-                + "/chart/" + range).openConnection();
-
+    String getHistoricalStockData(String url) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod("GET");
         Log.d("Response", Integer.toString(conn.getResponseCode()));
         StringBuilder content;
@@ -111,7 +112,22 @@ public class getInitPrice extends AsyncTask<String, Void, String>  {
         Log.d("ResponseData", content.toString());
         HashMap<String, String> dataMap = new Gson().fromJson(content.toString(),
                 new TypeToken<HashMap<String, String>>(){}.getType());
-        return dataMap.toString();
+        if (dataMap.containsKey("date")) {
+            return dataMap.get("date");
+        }
+        if (dataMap.containsKey("price")) {
+            return dataMap.get("close");
+        }
+        return null;
+    }
+    String getGraph(String symbol) {
+        try {
+            return getHistoricalStockData("https://api.iextrading.com/1.0/stock/" + symbol + "/chart/");
+        } catch (Exception e) {
+            Log.d("Exception occurred", e.getMessage());
+        }
+
+        return null;
     }
 
     protected void onPostExecute(String result) {

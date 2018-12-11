@@ -59,11 +59,13 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
 
         final GraphView graph = (GraphView) findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
+                new DataPoint(0,194.17),
+                new DataPoint(1, 192.23),
+                new DataPoint(2, 186.8),
+                new DataPoint(3, 191.41),
+                new DataPoint(4, 193.53),
+                new DataPoint(5, 185.86),
+                new DataPoint(6, 176.98)
         });
         graph.addSeries(series);
         Button oneDay = (Button) findViewById(R.id.button5);
