@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -32,20 +33,18 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... stockQuote) {
         String symbol = stockQuote[0];
 
-//        String officialPrice = getOfficialPrice();
-//        Log.d("Length of official price result", Integer.toString(officialPrice.length()));
-        if (getOfficialPrice() != null) {
-            return getOfficialPrice();
+        if (getOfficialPrice(symbol) != null) {
+            return getOfficialPrice(symbol);
         }
-        if (getClosingPrice() != null) {
-            return getClosingPrice();
+        if (getClosingPrice(symbol) != null) {
+            return getClosingPrice(symbol);
         }
         return "Error";
     }
 
-    String getOfficialPrice() {
+    String getOfficialPrice(String symbol) {
         try {
-            return readDataFromAPI("https://api.iextrading.com/1.0/deep/official-price?symbols=aapl");
+            return readDataFromAPI("https://api.iextrading.com/1.0/deep/official-price?symbols=" + symbol);
         } catch (Exception e) {
             Log.d("Exception occurred", e.getMessage());
         }
@@ -80,15 +79,40 @@ public class getInitPrice extends AsyncTask<String, Void, String> {
         }
         return null;
     }
-    String getClosingPrice() {
+    String getClosingPrice(String symbol) {
         try {
-            return readDataFromAPI("https://api.iextrading.com/1.0/stock/aapl/previous");
+            return readDataFromAPI("https://api.iextrading.com/1.0/stock/" + symbol + "/previous");
         } catch (Exception e) {
             Log.d("Exception occurred", e.getMessage());
         }
 
         return null;
     }
+
+    void getHistoricalStockData(String symbol, String range) throws MalformedURLException, IOException {
+        HttpURLConnection conn = (HttpURLConnection) new URL("https://api.iextrading.com/1.0/stock/" + symbol
+                + "/chart/" + range).openConnection();
+
+        conn.setRequestMethod("GET");
+        Log.d("Response", Integer.toString(conn.getResponseCode()));
+        StringBuilder content;
+
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            String line;
+            content = new StringBuilder();
+
+            while ((line = in.readLine()) != null) {
+                content.append(line);
+            }
+        } finally {
+            conn.disconnect();
+        }
+
+        Log.d("ResponseData", content.toString());
+        HashMap<String, String> dataMap = new Gson().fromJson(content.toString(),
+                new TypeToken<HashMap<String, String>>(){}.getType());
+    }
+
     protected void onPostExecute(String result) {
         listener.onResultReceived(result);
     }

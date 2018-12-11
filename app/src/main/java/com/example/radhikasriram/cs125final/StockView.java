@@ -13,12 +13,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 
 //import pl.zankowski.iextrading4j.api.stocks.Quote;
 //import pl.zankowski.iextrading4j.client.IEXTradingClient;
@@ -31,7 +39,6 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         Log.d("StockView", "Entered class");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_view);
