@@ -36,7 +36,7 @@ import java.util.HashMap;
 
 public class StockView extends AppCompatActivity implements getInitPrice.getInitPriceCallback {
     boolean error;
-
+    String price1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("StockView", "Entered class");
@@ -130,13 +130,13 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
         calculate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String calculation = text.getText().toString();
-                int n;
+                double n;
                 if (calculation.matches("\\d+")) {
-                    n = Integer.parseInt(calculation);
+                    n = Integer.parseInt(calculation) * Double.parseDouble(price1);
                 } else {
                     n = 0;
                 }
-                String finalt = "It will cost $" + n + " at " + symbol + " per share";
+                String finalt = "It will cost $" + n + " at " + price1 + " per share";
                 editable.setText(finalt);
             }
         });
@@ -146,6 +146,7 @@ public class StockView extends AppCompatActivity implements getInitPrice.getInit
     public void onResultReceived(String result) {
         TextView price = (TextView) findViewById(R.id.currentPrice);
         price.setText(result);
+        price1 = result;
     }
 
     private void startActvity() {
