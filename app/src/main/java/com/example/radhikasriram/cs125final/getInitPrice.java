@@ -47,7 +47,7 @@ public class getInitPrice extends AsyncTask<String, Void, String>  {
 
     String getOfficialPrice(String symbol) {
         try {
-            return readDataFromAPI("https://api.iextrading.com/1.0/deep/official-price?symbols=" + symbol);
+            return readDataFromAPI("https://api.iextrading.com/1.0/stock/" + symbol + "/quote");
         } catch (Exception e) {
             Log.d("Exception occurred", e.getMessage());
         }
@@ -75,10 +75,10 @@ public class getInitPrice extends AsyncTask<String, Void, String>  {
         HashMap<String, String> dataMap = new Gson().fromJson(content.toString(),
         new TypeToken<HashMap<String, String>>(){}.getType());
 
-        if (dataMap.containsKey("close")) {
+        if (dataMap.containsKey("latestPrice")) {
+            return dataMap.get("latestPrice");
+        } else if (dataMap.containsKey("close")) {
             return dataMap.get("close");
-        } else if (dataMap.containsKey("price")) {
-            return dataMap.get("price");
         }
         return null;
     }

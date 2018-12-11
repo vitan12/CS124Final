@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements getInitPrice.getInitPriceCallback, getInitPrice.{
+public class MainActivity extends AppCompatActivity implements getInitPrice.getInitPriceCallback{
     final String apple = "AAPL";
     final String ms = "MSFT";
     final String amazon = "AMZN";
